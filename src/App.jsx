@@ -25,10 +25,7 @@ function App() {
 
   const handleClick = () => {
     setShowMessage(true);
-
-    setTimeout(() => {
-      setShowConfetti(true);
-    }, 5000);
+    setShowConfetti(true);
   };
 
   const balloonItems = ["🎈"];
