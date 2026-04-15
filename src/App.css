@@ -2,57 +2,65 @@ body {
   margin: 0;
   font-family: Ubuntu, sans-serif;
   background: linear-gradient(135deg, #ff9a9e);
-  overflow-x: hidden; /* only hide horizontal scroll */
+  overflow: hidden;
 }
 
 .container {
+   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* center vertically */
+  align-items: center;
   text-align: center;
-  padding: 60px 20px;
+  padding: 20px;
 }
 
-/* ✅ Responsive Title */
 .title {
-  font-size: clamp(2rem, 8vw, 5rem);
+  font-size: 5rem;
   font-weight: 800;
+  margin-bottom: 10px;
   color: #fff;
   animation: pop 1s ease-in-out infinite alternate;
 }
 
-/* Button */
 .btn {
-  margin-top: 20px;
-  padding: 12px 20px;
+  margin-top: 15px;
+  padding: 12px 25px;
   border: none;
-  border-radius: 25px;
+  border-radius: 30px;
   background: #e85a74;
   color: white;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
   cursor: pointer;
 }
 
-/* ✅ Responsive Card */
 .card {
-  margin: 40px auto;
+  margin-top: 25px;
   width: 90%;
-  max-width: 400px; /* instead of fixed 500px */
+  max-width: 350px;
   padding: 20px;
-  background-color: #fff;
+
+  background: rgba(255, 255, 255, 0.7); /* glass look */
+  backdrop-filter: blur(10px);
+
   color: #e85a74;
-  font-weight: 700;
-  border-radius: 15px;
-  animation: slideUpFade 1s ease forwards;
+  font-weight: 600;
+  border-radius: 20px;
+
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+
+  animation: slideUpFade 0.8s ease forwards;
 }
 
-/* Balloons */
 .balloons span {
   position: absolute;
   bottom: -60px;
-  font-size: 1.8rem;
+  font-size: 2rem;
   animation: floatUp linear infinite;
 }
 
-/* Spread balloons */
+/* spread + different speeds */
 .balloons span:nth-child(1) { left: 10%; animation-duration: 8s; }
 .balloons span:nth-child(2) { left: 20%; animation-duration: 10s; }
 .balloons span:nth-child(3) { left: 30%; animation-duration: 9s; }
@@ -63,25 +71,41 @@ body {
 .balloons span:nth-child(8) { left: 80%; animation-duration: 11s; }
 .balloons span:nth-child(9) { left: 90%; animation-duration: 8.8s; }
 
-/* Animation */
+/* delays for natural flow */
+.balloons span:nth-child(odd) {
+  animation-delay: 1s;
+}
+.balloons span:nth-child(even) {
+  animation-delay: 2s;
+}
+
 @keyframes floatUp {
   0% {
     transform: translate(0, 0);
     opacity: 1;
   }
   50% {
-    transform: translate(20px, -50vh);
+    transform: translate(20px, -60vh);
   }
   100% {
-    transform: translate(-10px, -100vh);
+    transform: translate(-10px, -120vh);
     opacity: 0;
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.08);
   }
 }
 
 @keyframes slideUpFade {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(34px);
   }
   to {
     opacity: 1;
@@ -89,21 +113,16 @@ body {
   }
 }
 
-/* 🔥 Mobile Optimization */
 @media (max-width: 600px) {
-  .container {
-    padding-top: 40px;
+  .title {
+    font-size: 1.8rem;
   }
 
-  .btn {
-    width: 80%;
+  .name {
+    font-size: 1.4rem;
   }
 
-  .card {
-    font-size: 14px;
-  }
-
-  .balloons span {
-    font-size: 1.5rem;
+  .popup-content {
+    padding: 15px;
   }
 }
